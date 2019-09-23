@@ -1,16 +1,34 @@
-<swzf-clients-team-view
-    [characters]="teamZombie$ | async"
-    [selected]="selectedLeft"
-    computer="true"
-    (selectCharacter)="onSelectLeft($event)"></swzf-clients-team-view>
-<swzf-clients-compare-details *ngIf="isFighting()"
-    [left]="selectedLeft"
-    [right]="selectedRight"
-    (fightClicked)="fightClicked($event)"></swzf-clients-compare-details>
-<swzf-clients-display-winner *ngIf="isWinner()"
-                              [winner]="winner"
-                              (acknowledgedClicked)="winnerAcknowledged()"></swzf-clients-display-winner>
-<swzf-clients-team-view
-    [characters]="teamRenegades$ | async"
-    [selected]="selectedRight"
-    (selectCharacter)="onSelectRight($event)"></swzf-clients-team-view>
+<div class="zombies">
+    <div class="image"></div>
+
+    <swzf-clients-team-view
+        [characters]="teamZombie$ | async"
+        [selected]="selectedLeft"
+        computer="true"
+        (selectCharacter)="onSelectLeft($event)"></swzf-clients-team-view>
+</div>
+
+<div class="fight">
+    <div class="image"></div>
+
+    <div class="container">
+        <swzf-clients-compare-details *ngIf="isFighting()"
+                                      [left]="selectedLeft"
+                                      [right]="selectedRight"
+                                      (fightClicked)="fightClicked($event)"></swzf-clients-compare-details>
+        <swzf-clients-display-winner *ngIf="isWinner()"
+                                     [winner]="winner"
+                                     (acknowledgedClicked)="winnerAcknowledged()"></swzf-clients-display-winner>
+    </div>
+
+    <button class="restart">restart game</button>
+</div>
+
+<div class="renegades">
+    <div class="image">who will save the force</div>
+
+    <swzf-clients-team-view
+        [characters]="teamRenegades$ | async"
+        [selected]="selectedRight"
+        (selectCharacter)="onSelectRight($event)"></swzf-clients-team-view>
+</div>
