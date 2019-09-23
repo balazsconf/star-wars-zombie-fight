@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DisplayWinnerComponent } from './display-winner.component';
 
-describe('DisplayWinnerComponent', () => {
+xdescribe('DisplayWinnerComponent', () => {
   let component: DisplayWinnerComponent;
   let fixture: ComponentFixture<DisplayWinnerComponent>;
 
