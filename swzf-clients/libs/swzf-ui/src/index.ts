@@ -1,2 +1,2 @@
 export * from './lib/swzf-ui.module';
-export * from './lib/model';
+export * from '../../model/src/lib/model';

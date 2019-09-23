@@ -21,7 +21,8 @@
       ],
       "@swzf-clients/intro-screen": ["libs/intro-screen/src/index.ts"],
       "@swzf-clients/fight-screen": ["libs/fight-screen/src/index.ts"],
-      "@swzf-clients/swzf-ui": ["libs/swzf-ui/src/index.ts"]
+      "@swzf-clients/swzf-ui": ["libs/swzf-ui/src/index.ts"],
+      "@swzf-clients/model": ["libs/model/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

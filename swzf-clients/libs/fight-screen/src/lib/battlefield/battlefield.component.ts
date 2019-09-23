@@ -3,8 +3,8 @@ import {Apollo} from "apollo-angular";
 import {TeamRandomizerService} from "../team-randomizer.service";
 import {share} from "rxjs/operators";
 import {Observable} from "rxjs";
-import {People} from "@swzf-clients/swzf-ui";
 import {WinnerCalculatorService} from "../winner-calculator.service";
+import {People} from "@swzf-clients/model";
 
 @Component({
     selector: 'swzf-clients-battlefield',

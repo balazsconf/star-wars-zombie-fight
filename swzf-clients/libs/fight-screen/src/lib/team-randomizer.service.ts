@@ -3,7 +3,7 @@ import {Apollo} from "apollo-angular";
 import gql from 'graphql-tag';
 import {Observable} from "rxjs";
 import {map, share} from "rxjs/operators";
-import {People} from "@swzf-clients/swzf-ui";
+import {People} from "@swzf-clients/model";
 
 @Injectable({
     providedIn: 'root'
@@ -34,7 +34,6 @@ export class TeamRandomizerService {
                     image {
                         url         
                     }
-                    dead @client
                 }
             }
             `

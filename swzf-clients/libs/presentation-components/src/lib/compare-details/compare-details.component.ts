@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {People} from "@swzf-clients/swzf-ui";
+import {People} from "@swzf-clients/model";
 
 @Component({
   selector: 'swzf-clients-compare-details',

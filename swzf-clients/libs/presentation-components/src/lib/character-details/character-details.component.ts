@@ -1,5 +1,5 @@
 import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {People} from "@swzf-clients/swzf-ui";
+import {People} from "@swzf-clients/model";
 
 @Component({
   selector: 'swzf-clients-character-details',

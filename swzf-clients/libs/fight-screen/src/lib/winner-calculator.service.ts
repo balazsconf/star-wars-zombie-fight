@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {People} from "@swzf-clients/swzf-ui";
+import {People} from "@swzf-clients/model";
 
 @Injectable({
   providedIn: 'root'
