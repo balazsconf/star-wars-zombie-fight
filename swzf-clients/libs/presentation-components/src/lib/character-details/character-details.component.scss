@@ -1,0 +1,42 @@
+
+@import '~apps/graphql-client/src/assets/variables.scss';
+
+:host {
+    flex: 0 0 auto;
+
+    min-width: 200px;
+    width: 200px;
+
+    padding: $mid-spacer;
+
+    .name {
+        position: relative;
+        left: -$mid-spacer;
+        top: -$mid-spacer;
+        font-size: 20px;
+        background-color: $primary-color;
+        color: $background-color;
+        padding: $small-spacer $mid-spacer $small-spacer $mid-spacer;
+        border-bottom-right-radius: $border-radius;
+    }
+
+    label {
+        display: inline-block;
+        min-width: 100px;
+    }
+
+    * {
+        color: $primary-color;
+    }
+
+}
+
+:host.right-side {
+
+    .name {
+        position: relative;
+        left: $mid-spacer;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: $border-radius;
+    }
+}

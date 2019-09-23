@@ -1,0 +1,3 @@
+<div *ngFor="let character of characters">
+    <swzf-clients-character-box [name]="character.name" [imageUrl]="character.image.url" (click)="onSelectCharacter(character)"></swzf-clients-character-box>
+</div>

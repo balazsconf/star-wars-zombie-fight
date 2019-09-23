@@ -1,0 +1,20 @@
+{
+  "name": "swzf-rest-server",
+  "version": "1.0.0",
+  "description": "Local dev server for Star Wars data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "khayll",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "json-server": "^0.15.0",
+    "node-libcurl": "^2.0.1",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7",
+    "write-json-file": "^4.2.0",
+    "xmldom": "^0.1.27"
+  }
+}

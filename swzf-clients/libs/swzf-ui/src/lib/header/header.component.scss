@@ -1,0 +1,30 @@
+
+@import "~apps/graphql-client/src/assets/variables.scss";
+
+:host {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: $header-size;
+  background-color: $primary-color;
+
+  .title {
+    flex: 1 1 auto;
+    padding: 0 $mid-spacer 0 $mid-spacer;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .action {
+    flex: 0 0 auto;
+    padding: 0 $mid-spacer 0 $mid-spacer;
+
+    display: flex;
+    align-items: center;
+  }
+}

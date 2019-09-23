@@ -1,0 +1,21 @@
+
+
+<div *ngIf="character else nofighter">
+    <div class="name">
+        {{character?.name}}
+    </div>
+
+    <label>Born in: </label>{{character?.birth_year}}<br/>
+    <label>Height: </label>{{character?.height}}<br/>
+    <label>Mass: </label>{{character?.mass}}<br/>
+    <label>Hair color: </label>{{character?.hair_color}}<br/>
+    <label>Skin color: </label>{{character?.skin_color}}<br/>
+    <label>Eye color: </label>{{character?.eye_color}}<br/>
+    <label>Gender: </label>{{character?.gender}}<br/>
+    <label>Homeworld: </label>{{character?.homeworld.name}}<br/>
+
+</div>
+
+<ng-template #nofighter>
+    Select fighter
+</ng-template>

@@ -1,0 +1,30 @@
+{
+  "npmScope": "swzf-clients",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "graphql-client-e2e": {
+      "tags": []
+    },
+    "graphql-client": {
+      "tags": []
+    },
+    "presentation-components": {
+      "tags": []
+    },
+    "intro-screen": {
+      "tags": []
+    },
+    "fight-screen": {
+      "tags": []
+    },
+    "swzf-ui": {
+      "tags": []
+    }
+  }
+}

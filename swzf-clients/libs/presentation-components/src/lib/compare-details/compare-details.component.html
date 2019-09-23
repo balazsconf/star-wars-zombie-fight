@@ -1,0 +1,9 @@
+<div class="details">
+    <swzf-clients-character-details [character]="left"></swzf-clients-character-details>
+    <swzf-clients-details-separator></swzf-clients-details-separator>
+    <swzf-clients-character-details [character]="right" rightSide="true"></swzf-clients-character-details>
+</div>
+<div class="buttons">
+    <button class="fightButton" (click)="onFightClicked(left, right)">Fight</button>
+</div>
+

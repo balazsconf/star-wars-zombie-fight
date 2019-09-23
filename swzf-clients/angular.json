@@ -1,0 +1,268 @@
+{
+  "version": 1,
+  "projects": {
+    "graphql-client": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/graphql-client",
+      "sourceRoot": "apps/graphql-client/src",
+      "prefix": "swzf-clients",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/graphql-client",
+            "index": "apps/graphql-client/src/index.html",
+            "main": "apps/graphql-client/src/main.ts",
+            "polyfills": "apps/graphql-client/src/polyfills.ts",
+            "tsConfig": "apps/graphql-client/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/graphql-client/src/favicon.ico",
+              "apps/graphql-client/src/assets"
+            ],
+            "styles": ["apps/graphql-client/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/graphql-client/src/environments/environment.ts",
+                  "with": "apps/graphql-client/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "graphql-client:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "graphql-client:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "graphql-client:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/graphql-client/tsconfig.app.json",
+              "apps/graphql-client/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/graphql-client/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/graphql-client/jest.config.js",
+            "tsConfig": "apps/graphql-client/tsconfig.spec.json",
+            "setupFile": "apps/graphql-client/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "graphql-client-e2e": {
+      "root": "apps/graphql-client-e2e",
+      "sourceRoot": "apps/graphql-client-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/graphql-client-e2e/cypress.json",
+            "tsConfig": "apps/graphql-client-e2e/tsconfig.e2e.json",
+            "devServerTarget": "graphql-client:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "graphql-client:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/graphql-client-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/graphql-client-e2e/**"]
+          }
+        }
+      }
+    },
+    "presentation-components": {
+      "projectType": "library",
+      "root": "libs/presentation-components",
+      "sourceRoot": "libs/presentation-components/src",
+      "prefix": "swzf-clients",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/presentation-components/tsconfig.lib.json",
+              "libs/presentation-components/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/presentation-components/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/presentation-components/jest.config.js",
+            "tsConfig": "libs/presentation-components/tsconfig.spec.json",
+            "setupFile": "libs/presentation-components/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "intro-screen": {
+      "projectType": "library",
+      "root": "libs/intro-screen",
+      "sourceRoot": "libs/intro-screen/src",
+      "prefix": "swzf-clients",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/intro-screen/tsconfig.lib.json",
+              "libs/intro-screen/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/intro-screen/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/intro-screen/jest.config.js",
+            "tsConfig": "libs/intro-screen/tsconfig.spec.json",
+            "setupFile": "libs/intro-screen/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "fight-screen": {
+      "projectType": "library",
+      "root": "libs/fight-screen",
+      "sourceRoot": "libs/fight-screen/src",
+      "prefix": "swzf-clients",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/fight-screen/tsconfig.lib.json",
+              "libs/fight-screen/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/fight-screen/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/fight-screen/jest.config.js",
+            "tsConfig": "libs/fight-screen/tsconfig.spec.json",
+            "setupFile": "libs/fight-screen/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "swzf-ui": {
+      "projectType": "library",
+      "root": "libs/swzf-ui",
+      "sourceRoot": "libs/swzf-ui/src",
+      "prefix": "swzf-clients",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/swzf-ui/tsconfig.lib.json",
+              "libs/swzf-ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/swzf-ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/swzf-ui/jest.config.js",
+            "tsConfig": "libs/swzf-ui/tsconfig.spec.json",
+            "setupFile": "libs/swzf-ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "graphql-client"
+}

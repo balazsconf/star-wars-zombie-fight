@@ -1,0 +1,12 @@
+@import "~apps/graphql-client/src/assets/variables.scss";
+
+:host {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+
+    * {
+        color: $primary-color;
+    }
+
+}
