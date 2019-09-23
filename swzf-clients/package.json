@@ -35,7 +35,9 @@
             "@nrwl",
             "@nrwl/**",
             "@storybook",
-            "@storybook/**"
+            "@storybook/**",
+            "@angular",
+            "@angular/**"
         ]
     },
     "dependencies": {
