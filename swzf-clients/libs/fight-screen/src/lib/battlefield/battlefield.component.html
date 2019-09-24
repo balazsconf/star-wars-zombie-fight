@@ -8,18 +8,16 @@
         (selectCharacter)="onSelectZombie($event)"></swzf-clients-team-view>
 </div>
 
-<div class="fight">
+<div class="selected-fighters">
     <div class="image"></div>
 
-    <div class="container">
-        <swzf-clients-compare-details *ngIf="isFighting()"
-                                      [left]="selectedZombie"
-                                      [right]="selectedRenegade"
-                                      (fightClicked)="fightClicked($event)"></swzf-clients-compare-details>
-        <swzf-clients-display-winner *ngIf="isWinner()"
-                                     [winner]="winner"
-                                     (acknowledgedClicked)="winnerAcknowledged()"></swzf-clients-display-winner>
-    </div>
+    <swzf-clients-compare-details *ngIf="isFighting()"
+                                  [left]="selectedZombie"
+                                  [right]="selectedRenegade"
+                                  (fightClicked)="fightClicked($event)"></swzf-clients-compare-details>
+    <swzf-clients-display-winner *ngIf="isWinner()"
+                                 [winner]="winner"
+                                 (acknowledgedClicked)="winnerAcknowledged()"></swzf-clients-display-winner>
 
     <button class="restart">restart game</button>
 </div>
