@@ -9,7 +9,7 @@ const storybookUrl = 'http://localhost:6006';
 
 const getMatchOptions = ({ context: { kind, story }, url }) => {
     return {
-        failureThreshold: 0.2,
+        failureThreshold: 0.02,
         failureThresholdType: 'percent',
     };
 };
