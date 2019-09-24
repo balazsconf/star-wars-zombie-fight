@@ -1,4 +1,5 @@
-import initStoryshots, { imageSnapshot} from '@storybook/addon-storyshots';
+import initStoryshots from '@storybook/addon-storyshots';
+import { imageSnapshot } from '@storybook/addon-storyshots-puppeteer';
 
 require('babel-plugin-require-context-hook/register')();
 const context = global['__requireContext'];
@@ -16,5 +17,5 @@ initStoryshots({
                 req(filename);
             });
         }, module),
-    test: imageSnapshot
+    test: imageSnapshot()
 });
