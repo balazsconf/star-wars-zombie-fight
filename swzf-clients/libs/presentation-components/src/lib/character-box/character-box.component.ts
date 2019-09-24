@@ -7,10 +7,10 @@ import {DomSanitizer, SafeStyle} from "@angular/platform-browser";
     styleUrls: ['./character-box.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CharacterBoxComponent implements OnInit {
-
-    @HostBinding('style.background-image')
-    public backgroundImage: SafeStyle;
+export class CharacterBoxComponent {
+    @HostBinding('style.background-image') backgroundImage: SafeStyle;
+    @HostBinding('class.zombie') @Input() zombie = false;
+    @HostBinding('class.selected') @Input() selected = false;
 
     @Input() name: string;
 
@@ -21,8 +21,4 @@ export class CharacterBoxComponent implements OnInit {
 
     constructor(private sanitizer: DomSanitizer) {
     }
-
-    ngOnInit() {
-    }
-
 }

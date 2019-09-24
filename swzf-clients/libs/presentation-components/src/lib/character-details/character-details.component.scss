@@ -1,42 +1,60 @@
-
 @import '~apps/graphql-client/src/assets/variables.scss';
 
 :host {
-    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: $space * 4;
+    color: $primary-color;
 
-    min-width: 200px;
-    width: 200px;
+    &.zombie {
+        color: $secondary-color;
 
-    padding: $mid-spacer;
-
-    .name {
-        position: relative;
-        left: -$mid-spacer;
-        top: -$mid-spacer;
-        font-size: 20px;
-        background-color: $primary-color;
-        color: $background-color;
-        padding: $small-spacer $mid-spacer $small-spacer $mid-spacer;
-        border-bottom-right-radius: $border-radius;
+        .name {
+            text-align: left;
+            margin-left: -$space * 4;
+            margin-right: auto;
+            text-align: left;
+            border-bottom-right-radius: $border-radius;
+            border-bottom-left-radius: 0;
+            background-color: $secondary-color;
+        }
     }
 
-    label {
+    .name {
         display: inline-block;
-        min-width: 100px;
-    }
-
-    * {
-        color: $primary-color;
-    }
-
-}
-
-:host.right-side {
-
-    .name {
-        position: relative;
-        left: $mid-spacer;
-        border-bottom-right-radius: 0;
+        min-width: 120px;
+        margin: (-$space * 4) (-$space * 4) ($space * 2) auto;
+        padding: $space * 2;
+        text-align: right;
+        font-size: 16px;
+        color: black;
+        vertical-align: top;
+        background-color: $primary-color;
         border-bottom-left-radius: $border-radius;
+    }
+
+    .details{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-gap: $space;
+
+        label {
+            white-space: nowrap;
+            text-align: right;
+            opacity: .5;
+        }
+
+        span {
+            text-align: left;
+            font-weight: 700;
+        }
+    }
+
+    .select-fighter{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
     }
 }

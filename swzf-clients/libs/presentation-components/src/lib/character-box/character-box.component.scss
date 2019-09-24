@@ -1,33 +1,32 @@
 @import '../../../../../apps/graphql-client/src/assets/variables';
 
 :host {
-    flex: 0 0 auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: $border-radius;
 
     cursor: pointer;
 
-    margin: $mid-spacer;
-
-    border: 2px solid;
-    border-radius: $border-radius;
-    border-color: $transparent-border-color;
-
-    background-color: $label-background-color;
-    background-size: 150px auto;
+    background-color: black;
+    background-size: cover;
     background-repeat: no-repeat;
 
-    min-width: 150px;
-    min-height: 150px;
-    width: 150px;
-    height: 150px;
+    &.zombie {
+
+    }
+
+    &.selected {
+
+    }
 
     .name {
         flex: 0 0 auto;
         padding: $xs-spacer $small-spacer $xs-spacer $small-spacer;
         background-color: rgba(0,0,0,0.6);
-        border-top-left-radius: $border-radius;
     }
 }
