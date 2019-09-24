@@ -5,5 +5,11 @@ module.exports = {
   snapshotSerializers: [
     'jest-preset-angular/AngularSnapshotSerializer.js',
     'jest-preset-angular/HTMLCommentSerializer.js'
-  ]
+  ],
+    setupFilesAfterEnv: ['./test-setup.ts'],
+    globals: {
+        'ts-jest': {
+            diagnostics: false
+        }
+    }
 };

@@ -281,6 +281,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "storyshots": {
+      "projectType": "library",
+      "root": "libs/storyshots",
+      "sourceRoot": "libs/storyshots/src",
+      "prefix": "swzf-clients",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/storyshots/tsconfig.lib.json",
+              "libs/storyshots/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/storyshots/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/storyshots/jest.config.js",
+            "tsConfig": "libs/storyshots/tsconfig.spec.json",
+            "setupFile": "libs/storyshots/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

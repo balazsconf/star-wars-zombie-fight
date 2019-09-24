@@ -4,11 +4,12 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {SwzfUiModule} from "@swzf-clients/swzf-ui";
 import {RouterModule} from "@angular/router";
-import {APOLLO_OPTIONS, ApolloModule} from "apollo-angular";
+import {Apollo, APOLLO_OPTIONS, ApolloModule} from "apollo-angular";
 import {InMemoryCache} from "apollo-cache-inmemory";
 import {HttpLinkModule, HttpLink} from "apollo-angular-link-http";
 import {HttpClientModule} from "@angular/common/http";
 import gql from "graphql-tag";
+
 
 @NgModule({
     declarations: [AppComponent],
@@ -22,38 +23,7 @@ import gql from "graphql-tag";
                     uri: "http://localhost:4000/graphql"
                 }),
                 typeDefs,
-                resolvers,
-                // resolvers: {
-                //     Mutation: {
-                //         toggleDead: (_root, variables, {cache, getCacheKey}) => {
-                //             const id = getCacheKey({__typename: 'People', id: variables.id});
-                //             const fragment = gql`
-                //                 fragment dead on People {
-                //                     true
-                //                   }
-                //                 `;
-                //             const people = cache.readFragment({fragment, id});
-                //             const data = {...people, dead: !people.dead};
-                //             cache.writeData({id, data});
-                //             return null;
-                //         },
-                //     },
-                //     Query: {
-                //         People: {
-                //             dead: (people, _args, { cache, getCacheKey }) => {
-                //                 console.log('query dead');
-                //                 const id = getCacheKey({__typename: 'People', id: people.id});
-                //                 const fragment = gql`
-                //                 fragment dead on People {
-                //                     true
-                //                   }
-                //                 `;
-                //                 const cachedPeople = cache.readFragment({fragment, id});
-                //                 return cachedPeople.dead ? true: false;
-                //             }
-                //         }
-                //     }
-                // }
+                resolvers
             }
         },
         deps: [HttpLink]
@@ -61,14 +31,65 @@ import gql from "graphql-tag";
     bootstrap: [AppComponent]
 })
 export class AppModule {
+    constructor(private apollo: Apollo) {
+
+        // initialize the local store
+        this.apollo.getClient().cache.writeData({
+            data: {
+                deadPeople: [],
+                zombies: [],
+                renegades: []
+            },
+        });
+    }
 }
 
-
 const typeDefs = gql`
+  extend type Query {
+    deadPeople: [ID!]!
+    zombies: [ID!]!
+    renegades: [ID!]!
+  }
+
   extend type People {
     dead: Boolean
     side: String
   }
 `;
 
-const resolvers = {};
+
+const GET_DEAD_PEOPLE = gql`
+  query GetDeadPeople {
+    deadPeople @client
+  }
+`;
+const resolvers = {
+    Mutation: {
+        toggleDead: (_root, variables, {cache, getCacheKey}) => {
+            const id = getCacheKey({__typename: 'People', id: variables.id})
+            const fragment = gql`
+          fragment deadFlag on People {
+            dead
+          }
+        `;
+            const people = cache.readFragment({fragment, id});
+            const data = {...people, dead: !people.dead};
+            cache.writeData({id, data});
+            return null;
+        }
+    },
+    Query: {
+        People: {
+            dead: (people, _args, { cache }) => {
+                const { deadPeople } = cache.readQuery({ query: GET_DEAD_PEOPLE });
+                return deadPeople.includes(people.id);
+            }
+        },
+        allPeople: {
+            dead: (people, _args, { cache }) => {
+                const { deadPeople } = cache.readQuery({ query: GET_DEAD_PEOPLE });
+                return deadPeople.includes(people.id);
+            }
+        }
+    }
+};
