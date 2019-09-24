@@ -12,7 +12,7 @@ storiesOf('CharacterBox', module)
   .add('Regular view', () => ({
       component: CharacterBoxComponent,
       props: {
-          name: 'Mace Windu',
+          name: 'Mace Winduu',
           imageUrl: 'https://vignette.wikia.nocookie.net/starwars/images/f/fc/Mace_Windu.jpg/revision/latest?cb=20071230055326'
       }
     })
