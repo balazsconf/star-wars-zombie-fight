@@ -31,6 +31,9 @@
     },
     "storyshots": {
       "tags": []
+    },
+    "gameover-screen": {
+      "tags": []
     }
   }
 }

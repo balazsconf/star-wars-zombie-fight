@@ -312,6 +312,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "gameover-screen": {
+      "projectType": "library",
+      "root": "libs/gameover-screen",
+      "sourceRoot": "libs/gameover-screen/src",
+      "prefix": "swzf-clients",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/gameover-screen/tsconfig.lib.json",
+              "libs/gameover-screen/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/gameover-screen/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/gameover-screen/jest.config.js",
+            "tsConfig": "libs/gameover-screen/tsconfig.spec.json",
+            "setupFile": "libs/gameover-screen/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

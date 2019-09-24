@@ -19,7 +19,7 @@
                                  [winner]="winner"
                                  (acknowledgedClicked)="winnerAcknowledged()"></swzf-clients-display-winner>
 
-    <button class="restart">restart game</button>
+    <button class="restart" (click)="onRestartGameClick()">restart game</button>
 </div>
 
 <div class="renegades">

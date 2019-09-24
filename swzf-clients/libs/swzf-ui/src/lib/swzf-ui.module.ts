@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 import {FightScreenModule} from "@swzf-clients/fight-screen";
+import {GameoverScreenModule} from "@swzf-clients/gameover-screen";
 
 const routes: Routes = [
   {
@@ -11,6 +12,11 @@ const routes: Routes = [
   {
     path: 'fight',
     loadChildren: () => import('@swzf-clients/fight-screen').then(mod => FightScreenModule)
+
+  },
+  {
+    path: 'gameover',
+    loadChildren: () => import('@swzf-clients/gameover-screen').then(mod => GameoverScreenModule)
 
   },
   { path: '**', redirectTo: 'intro', pathMatch: 'full' }

@@ -5,6 +5,7 @@ import {share} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {WinnerCalculatorService} from "../winner-calculator.service";
 import {People} from "@swzf-clients/model";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'swzf-clients-battlefield',
@@ -24,6 +25,7 @@ export class BattlefieldComponent implements OnInit {
     private gameOver;
 
     constructor(
+        private router: Router,
         private apollo: Apollo,
         private teamRandomizer: TeamRandomizerService,
         private winnerCalculator: WinnerCalculatorService
@@ -38,6 +40,10 @@ export class BattlefieldComponent implements OnInit {
 
     onSelectZombie(character: People) {
         this.selectedZombie = character;
+    }
+
+    onRestartGameClick(){
+        this.router.navigateByUrl('/gameover');
     }
 
     fightClicked({left, right}) {
