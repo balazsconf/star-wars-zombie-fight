@@ -1,7 +1,6 @@
 import initStoryshots, { imageSnapshot} from '@storybook/addon-storyshots';
 
 require('babel-plugin-require-context-hook/register')();
-
 const context = global['__requireContext'];
 const path=require('path');
 
