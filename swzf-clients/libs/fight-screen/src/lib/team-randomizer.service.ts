@@ -59,6 +59,10 @@ export class TeamRandomizerService {
             share(),
             map( (characters) => {
                 return characters.slice(0, this.TEAM_SIZE);
+            }),
+            map( (characters) => {
+                characters.forEach( (character) => {character.side = 'zombie'} );
+                return characters
             })
         )
     }
@@ -68,6 +72,10 @@ export class TeamRandomizerService {
             share(),
             map( (characters) => {
                 return characters.slice(this.TEAM_SIZE);
+            }),
+            map( (characters) => {
+                characters.forEach( (character) => {character.side = 'renegade'} );
+                return characters
             })
         )
     }

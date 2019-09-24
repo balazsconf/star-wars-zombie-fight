@@ -3,9 +3,9 @@
 
     <swzf-clients-team-view
         [characters]="teamZombie$ | async"
-        [selected]="selectedLeft"
+        [selected]="selectedZombie"
         zombies="true"
-        (selectCharacter)="onSelectLeft($event)"></swzf-clients-team-view>
+        (selectCharacter)="onSelectZombie($event)"></swzf-clients-team-view>
 </div>
 
 <div class="fight">
@@ -13,8 +13,8 @@
 
     <div class="container">
         <swzf-clients-compare-details *ngIf="isFighting()"
-                                      [left]="selectedLeft"
-                                      [right]="selectedRight"
+                                      [left]="selectedZombie"
+                                      [right]="selectedRenegade"
                                       (fightClicked)="fightClicked($event)"></swzf-clients-compare-details>
         <swzf-clients-display-winner *ngIf="isWinner()"
                                      [winner]="winner"
@@ -29,6 +29,6 @@
 
     <swzf-clients-team-view
         [characters]="teamRenegades$ | async"
-        [selected]="selectedRight"
-        (selectCharacter)="onSelectRight($event)"></swzf-clients-team-view>
+        [selected]="selectedRenegade"
+        (selectCharacter)="onSelectRenegade($event)"></swzf-clients-team-view>
 </div>

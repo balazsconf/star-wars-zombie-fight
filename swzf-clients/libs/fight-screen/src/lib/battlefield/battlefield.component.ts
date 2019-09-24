@@ -16,8 +16,8 @@ export class BattlefieldComponent implements OnInit {
     private teamZombie$: Observable<People[]> = this.teamRandomizer.getTeamZombie();
     private teamRenegades$: Observable<People[]> = this.teamRandomizer.getTeamRenegades();
 
-    private selectedLeft: People;
-    private selectedRight: People;
+    private selectedZombie: People;
+    private selectedRenegade: People;
 
     private winner: People;
 
@@ -32,17 +32,17 @@ export class BattlefieldComponent implements OnInit {
 
     ngOnInit() {}
 
-    onSelectRight(character: People) {
-        this.selectedRight = character;
+    onSelectRenegade(character: People) {
+        this.selectedRenegade = character;
     }
 
-    onSelectLeft(character: People) {
-        this.selectedLeft = character;
+    onSelectZombie(character: People) {
+        this.selectedZombie = character;
     }
 
     fightClicked({left, right}) {
-        if ( this.selectedLeft && this.selectedRight ) {
-            this.winner = this.winnerCalculator.calculateWinner(this.selectedLeft, this.selectedRight);
+        if ( this.selectedZombie && this.selectedRenegade ) {
+            this.winner = this.winnerCalculator.calculateWinner(this.selectedZombie, this.selectedRenegade);
         }
     }
 

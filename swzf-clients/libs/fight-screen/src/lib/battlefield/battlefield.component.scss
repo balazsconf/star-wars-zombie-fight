@@ -2,18 +2,17 @@
 
 :host {
     width: 100%;
+    max-width: 1440px;
     height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding-top: $space * 10;
-    background-color: $background-color;
-    background-image: url("../../../../../apps/graphql-client/src/assets/bg.jpg");
-    background-repeat: no-repeat;
-    background-position: top center;
+    margin: 0 auto;
+    padding-top: ($space * 3);
 
     .image {
         flex: 0 0 auto;
+        display: inline-block;
         background-size: contain;
         background-repeat: no-repeat;
     }
@@ -21,10 +20,10 @@
     .zombies,
     .renegades {
         flex: 1 0 auto;
+        display: flex;
         flex-direction: column;
         align-items: center;
-        max-width: 250px;
-        padding-top: $space * 8;
+        padding-top: $space * 6;
 
         .image {
             width: 250px;
@@ -52,22 +51,30 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        max-width: 700px;
 
         .image {
             width: 293px;
             height: 157px;
-            margin-bottom: -6px;
             z-index: 1;
             background-image: url("../../../../../apps/graphql-client/src/assets/swzf.png");
         }
 
         .container {
             flex: 1 1 auto;
+
+            swzf-clients-compare-details{
+                margin-top: -6px;
+            }
+
+            swzf-clients-display-winner{
+
+            }
         }
 
         .restart {
             flex: 0 0 auto;
+            height: $space * 4;
+            margin-top: $space * 4;
             color: $primary-color;
             border-radius: $space $space 0 0;
             border: 2px solid $primary-color;

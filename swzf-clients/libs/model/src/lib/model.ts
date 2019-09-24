@@ -11,6 +11,7 @@ export interface People {
   image: Image;
   homeworld: Planet;
   dead: boolean;
+  side: null | 'zombie' | 'renegade';
 }
 
 export interface Image {

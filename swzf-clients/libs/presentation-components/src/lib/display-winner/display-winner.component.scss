@@ -1,9 +1,26 @@
-
+@import "../../../../../apps/graphql-client/src/assets/variables.scss";
 
 :host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    button {
-        padding: 16px;
+    label{
+        margin-top: $space*4;
+        font-size: 24px;
+        color: $primary-color;
+        font-weight: 100;
     }
 
+    span{
+        margin-bottom: $space*4;
+        font-size: 48px;
+        color: $primary-color;
+        font-weight: 700;
+    }
+
+    swzf-clients-character-box {
+        width: 350px;
+        height: 300px;
+    }
 }
