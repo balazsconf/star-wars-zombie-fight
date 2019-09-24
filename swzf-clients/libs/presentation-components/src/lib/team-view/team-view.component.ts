@@ -11,7 +11,7 @@ export class TeamViewComponent implements OnInit, OnChanges {
 
     @Input() characters: People[];
 
-    @Input() computer = false;
+    @Input() zombies = false;
 
     @Input() selected: People;
 
@@ -22,7 +22,7 @@ export class TeamViewComponent implements OnInit, OnChanges {
     ngOnInit() {}
 
     ngOnChanges() {
-        if ( this.computer && (!this.selected || this.isSelectedCharacterDead()) ) {
+        if ( this.zombies && (!this.selected || this.isSelectedCharacterDead()) ) {
             this.selectRandomCharacter();
         }
     }

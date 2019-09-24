@@ -1,21 +1,20 @@
-
-
-<div *ngIf="character else nofighter">
+<ng-container *ngIf="character else nofighter">
     <div class="name">
         {{character?.name}}
     </div>
 
-    <label>Born in: </label>{{character?.birth_year}}<br/>
-    <label>Height: </label>{{character?.height}}<br/>
-    <label>Mass: </label>{{character?.mass}}<br/>
-    <label>Hair color: </label>{{character?.hair_color}}<br/>
-    <label>Skin color: </label>{{character?.skin_color}}<br/>
-    <label>Eye color: </label>{{character?.eye_color}}<br/>
-    <label>Gender: </label>{{character?.gender}}<br/>
-    <label>Homeworld: </label>{{character?.homeworld.name}}<br/>
-
-</div>
+    <div class="details">
+        <label>Born in</label> <span>{{character?.birth_year}}</span>
+        <label>Height</label> <span>{{character?.height}}</span>
+        <label>Mass</label> <span>{{character?.mass}}</span>
+        <label>Hair color</label> <span>{{character?.hair_color}}</span>
+        <label>Skin color</label> <span>{{character?.skin_color}}</span>
+        <label>Eye color</label> <span>{{character?.eye_color}}</span>
+        <label>Gender</label> <span>{{character?.gender}}</span>
+        <label>Homeworld</label> <span>{{character?.homeworld.name}}</span>
+    </div>
+</ng-container>
 
 <ng-template #nofighter>
-    Select fighter
+    <div class="select-fighter">select fighter</div>
 </ng-template>

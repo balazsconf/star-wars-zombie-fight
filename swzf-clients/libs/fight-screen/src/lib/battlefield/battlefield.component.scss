@@ -1,12 +1,83 @@
-@import "~apps/graphql-client/src/assets/variables.scss";
+@import "../../../../../apps/graphql-client/src/assets/variables.scss";
 
 :host {
-    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    padding-top: $space * 10;
+    background-color: $background-color;
+    background-image: url("../../../../../apps/graphql-client/src/assets/bg.jpg");
+    background-repeat: no-repeat;
+    background-position: top center;
 
-    * {
+    .image {
+        flex: 0 0 auto;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .zombies,
+    .renegades {
+        flex: 1 0 auto;
+        flex-direction: column;
+        align-items: center;
+        max-width: 250px;
+        padding-top: $space * 8;
+
+        .image {
+            width: 250px;
+            height: 85px;
+            background-position: center center;
+        }
+    }
+
+    .zombies .image {
+        background-image: url("../../../../../apps/graphql-client/src/assets/zombies.png");
+    }
+
+    .renegades .image {
+        padding-top: 60px;
+        font-size: 11px;
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        background-image: url("../../../../../apps/graphql-client/src/assets/renegades.png");
         color: $primary-color;
     }
 
+    .fight {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 700px;
+
+        .image {
+            width: 293px;
+            height: 157px;
+            margin-bottom: -6px;
+            z-index: 1;
+            background-image: url("../../../../../apps/graphql-client/src/assets/swzf.png");
+        }
+
+        .container {
+            flex: 1 1 auto;
+        }
+
+        .restart {
+            flex: 0 0 auto;
+            color: $primary-color;
+            border-radius: $space $space 0 0;
+            border: 2px solid $primary-color;
+            border-bottom: none;
+            background-color: transparent;
+
+            &:hover{
+                color: black;
+                background-color: $primary-color;
+            }
+        }
+    }
 }
