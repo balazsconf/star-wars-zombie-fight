@@ -4,7 +4,7 @@ module.exports = {
     '^.+\\.(ts|js|html)$': 'ts-jest'
   },
   transformIgnorePatterns: [
-      'node_modules/(?!@ngrx|@storybook/addon-storyshots/dist)'
+      'node_modules/(?!@ngrx|@storybook/addon-storyshots/dist/frameworks/angular)'
   ],
   resolver: '@nrwl/jest/plugins/resolver',
   moduleFileExtensions: ['ts', 'js', 'html', 'json'],
