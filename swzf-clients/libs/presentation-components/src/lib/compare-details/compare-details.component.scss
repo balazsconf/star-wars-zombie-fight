@@ -1,32 +1,35 @@
 @import '../../../../../apps/graphql-client/src/assets/variables.scss';
 
 :host {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
+    text-align: center;
 
-    .details {
+    .compare {
         display: flex;
-        overflow: hidden;
-        background-color: rgba(0,0,0,.8);
-        border: 2px solid $primary-color;
+        border: 4px solid $primary-color;
         border-top-color: $secondary-color;
         border-left-color: $secondary-color;
         border-radius: $border-radius;
+        background-color: rgba(0,0,0,.8);
 
         swzf-clients-details-separator {
             flex: 0 0 auto;
             align-self: center;
-            margin: 0 (-$space*2);
+            width: $space * 6;
+            height: $space * 6;
+            margin: 0 (-$space * 3);
         }
 
         swzf-clients-character-details {
-            flex: 1 1 50%;
-            min-width: $space * 30;
+            flex: 1 0 auto;
+            width: 50%;
         }
     }
 
     .fight-button {
+        height: $space * 6;
+        font-size: 18px;
+        margin-top: -2px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
     }

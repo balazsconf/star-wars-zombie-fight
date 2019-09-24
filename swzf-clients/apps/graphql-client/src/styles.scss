@@ -17,13 +17,12 @@ body {
 
 button {
     height: $space * 5;
-    line-height: $space * 5;
     min-width: $space * 15;
     padding: 0 $space * 2;
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
-    border: none;
+    border: 2px solid $primary-color;
     border-radius: $border-radius;
     background-color: $primary-color;
     outline: 0;

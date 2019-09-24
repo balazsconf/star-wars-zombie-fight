@@ -5,6 +5,7 @@ import {share} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {WinnerCalculatorService} from "../winner-calculator.service";
 import {People} from "@swzf-clients/model";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'swzf-clients-battlefield',
@@ -16,14 +17,15 @@ export class BattlefieldComponent implements OnInit {
     private teamZombie$: Observable<People[]> = this.teamRandomizer.getTeamZombie();
     private teamRenegades$: Observable<People[]> = this.teamRandomizer.getTeamRenegades();
 
-    private selectedLeft: People;
-    private selectedRight: People;
+    private selectedZombie: People;
+    private selectedRenegade: People;
 
     private winner: People;
 
     private gameOver;
 
     constructor(
+        private router: Router,
         private apollo: Apollo,
         private teamRandomizer: TeamRandomizerService,
         private winnerCalculator: WinnerCalculatorService
@@ -34,17 +36,21 @@ export class BattlefieldComponent implements OnInit {
         this.teamRandomizer.createRandomTeams(3);
     }
 
-    onSelectRight(character: People) {
-        this.selectedRight = character;
+    onSelectRenegade(character: People) {
+        this.selectedRenegade = character;
     }
 
-    onSelectLeft(character: People) {
-        this.selectedLeft = character;
+    onSelectZombie(character: People) {
+        this.selectedZombie = character;
+    }
+
+    onRestartGameClick(){
+        this.router.navigateByUrl('/gameover');
     }
 
     fightClicked({left, right}) {
-        if ( this.selectedLeft && this.selectedRight ) {
-            this.winner = this.winnerCalculator.calculateWinner(this.selectedLeft, this.selectedRight);
+        if ( this.selectedZombie && this.selectedRenegade ) {
+            this.winner = this.winnerCalculator.calculateWinner(this.selectedZombie, this.selectedRenegade);
         }
     }
 

@@ -6,14 +6,12 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding-top: $space * 10;
-    background-color: $background-color;
-    background-image: url("../../../../../apps/graphql-client/src/assets/bg.jpg");
-    background-repeat: no-repeat;
-    background-position: top center;
+    padding-top: ($space * 3);
+    overflow: auto;
 
     .image {
         flex: 0 0 auto;
+        display: inline-block;
         background-size: contain;
         background-repeat: no-repeat;
     }
@@ -21,10 +19,11 @@
     .zombies,
     .renegades {
         flex: 1 0 auto;
+        display: flex;
         flex-direction: column;
         align-items: center;
-        max-width: 250px;
-        padding-top: $space * 8;
+        padding-top: $space * 6;
+        max-width: 400px;
 
         .image {
             width: 250px;
@@ -47,27 +46,34 @@
         color: $primary-color;
     }
 
-    .fight {
+    .selected-fighters {
         flex: 1 0 auto;
         display: flex;
         flex-direction: column;
         align-items: center;
-        max-width: 700px;
+        max-width: 800px;
 
         .image {
             width: 293px;
             height: 157px;
-            margin-bottom: -6px;
             z-index: 1;
             background-image: url("../../../../../apps/graphql-client/src/assets/swzf.png");
         }
 
-        .container {
+        swzf-clients-compare-details,
+        swzf-clients-display-winner{
             flex: 1 1 auto;
+            width: 100%;
+        }
+
+        swzf-clients-compare-details{
+            margin-top: -6px;
         }
 
         .restart {
             flex: 0 0 auto;
+            height: $space * 4;
+            margin-top: $space * 4;
             color: $primary-color;
             border-radius: $space $space 0 0;
             border: 2px solid $primary-color;

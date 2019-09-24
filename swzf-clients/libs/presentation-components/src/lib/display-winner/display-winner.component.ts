@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {People} from "@swzf-clients/model";
 
 @Component({
     selector: 'swzf-clients-display-winner',
@@ -7,7 +8,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class DisplayWinnerComponent implements OnInit {
 
-    @Input() winner;
+    @Input() winner: People;
 
     @Output() acknowledgedClicked = new EventEmitter();
 
@@ -17,7 +18,6 @@ export class DisplayWinnerComponent implements OnInit {
 
     onAcknowledgedClicked() {
         this.acknowledgedClicked.emit();
-        console.log('winner ok')
     }
 
 }

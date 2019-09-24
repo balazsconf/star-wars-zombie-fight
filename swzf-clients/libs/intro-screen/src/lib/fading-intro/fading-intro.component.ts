@@ -14,7 +14,7 @@ export class FadingIntroComponent implements OnInit, OnDestroy {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.subscription = timer(60000,1).subscribe( () => {
+    this.subscription = timer(30000,1).subscribe( () => {
         this.router.navigate(['fight']);
       }
     );
