@@ -4,12 +4,92 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {SwzfUiModule} from "@swzf-clients/swzf-ui";
 import {RouterModule} from "@angular/router";
-import {Apollo, APOLLO_OPTIONS, ApolloModule} from "apollo-angular";
+import {APOLLO_OPTIONS, ApolloModule} from "apollo-angular";
 import {InMemoryCache} from "apollo-cache-inmemory";
-import {HttpLinkModule, HttpLink} from "apollo-angular-link-http";
+import {HttpLink, HttpLinkModule} from "apollo-angular-link-http";
 import {HttpClientModule} from "@angular/common/http";
 import gql from "graphql-tag";
 
+export const GET_ZOMBIES = gql`
+  query Zombies {
+    zombies @client
+  }
+`;
+
+export const GET_RENEGADES = gql`
+  query Renegades {
+    renegades @client
+  }
+`;
+
+const resolvers = {
+    People: {
+        dead: (people) => people.dead || false,
+        side: (people, _, { cache }) => {
+            const { zombies } = cache.readQuery({ query: GET_ZOMBIES });
+            const { renegades } = cache.readQuery({ query: GET_RENEGADES });
+            if ( zombies.includes(people.id) ) {
+                return 'zombies';
+            }
+            if ( renegades.includes(people.id) ) {
+                return 'renegades';
+            }
+            return '';
+        }
+    },
+    Mutation: {
+        toggleDead: (_root, variables, {cache, getCacheKey}) => {
+            const id = getCacheKey({__typename: 'People', id: variables.id});
+            const fragment = gql`
+                fragment deadFlag on People {
+                    dead
+                }
+            `;
+            const people = cache.readFragment({fragment, id});
+            const data = {...people, dead: !people.dead};
+            cache.writeData({id, data});
+            return null;
+        },
+        addOrRemoveFromZombies: (_, { id }, { cache }) => {
+            const { zombies } = cache.readQuery({ query: GET_ZOMBIES });
+            const data = {
+                zombies: zombies.includes(id)
+                    ? zombies.filter(i => i !== id)
+                    : [...zombies, id],
+            };
+            cache.writeQuery({ query: GET_ZOMBIES, data });
+            return data.zombies;
+        },
+        addOrRemoveFromRenegades: (_, { id }, { cache }) => {
+            const { renegades } = cache.readQuery({ query: GET_RENEGADES });
+            const data = {
+                renegades: renegades.includes(id)
+                    ? renegades.filter(i => i !== id)
+                    : [...renegades, id],
+            };
+            cache.writeQuery({ query: GET_RENEGADES, data });
+            return data.renegades;
+        }
+    }
+};
+
+const typeDefs = gql`
+  extend type People {
+    dead: Boolean
+    side: String
+  }
+  
+  extend type Query {
+    zombies: [ID]!
+    renegades: [ID]!
+  }
+
+  extend type Mutation {
+    addOrRemoveFromZombies(id: ID!): [People]
+    addOrRemoveFromRenegades(id: ID!): [People]
+  }
+  
+`;
 
 @NgModule({
     declarations: [AppComponent],
@@ -17,13 +97,18 @@ import gql from "graphql-tag";
     providers: [{
         provide: APOLLO_OPTIONS,
         useFactory: (httpLink: HttpLink) => {
+
+            const cache = new InMemoryCache();
+
+            const link = httpLink.create({
+                uri: "http://localhost:4000/graphql"
+            });
+
             return {
-                cache: new InMemoryCache(),
-                link: httpLink.create({
-                    uri: "http://localhost:4000/graphql"
-                }),
-                typeDefs,
-                resolvers
+                cache,
+                link,
+                resolvers,
+                typeDefs
             }
         },
         deps: [HttpLink]
@@ -31,65 +116,6 @@ import gql from "graphql-tag";
     bootstrap: [AppComponent]
 })
 export class AppModule {
-    constructor(private apollo: Apollo) {
-
-        // initialize the local store
-        this.apollo.getClient().cache.writeData({
-            data: {
-                deadPeople: [],
-                zombies: [],
-                renegades: []
-            },
-        });
-    }
+    constructor() { }
 }
 
-const typeDefs = gql`
-  extend type Query {
-    deadPeople: [ID!]!
-    zombies: [ID!]!
-    renegades: [ID!]!
-  }
-
-  extend type People {
-    dead: Boolean
-    side: String
-  }
-`;
-
-
-const GET_DEAD_PEOPLE = gql`
-  query GetDeadPeople {
-    deadPeople @client
-  }
-`;
-const resolvers = {
-    Mutation: {
-        toggleDead: (_root, variables, {cache, getCacheKey}) => {
-            const id = getCacheKey({__typename: 'People', id: variables.id})
-            const fragment = gql`
-          fragment deadFlag on People {
-            dead
-          }
-        `;
-            const people = cache.readFragment({fragment, id});
-            const data = {...people, dead: !people.dead};
-            cache.writeData({id, data});
-            return null;
-        }
-    },
-    Query: {
-        People: {
-            dead: (people, _args, { cache }) => {
-                const { deadPeople } = cache.readQuery({ query: GET_DEAD_PEOPLE });
-                return deadPeople.includes(people.id);
-            }
-        },
-        allPeople: {
-            dead: (people, _args, { cache }) => {
-                const { deadPeople } = cache.readQuery({ query: GET_DEAD_PEOPLE });
-                return deadPeople.includes(people.id);
-            }
-        }
-    }
-};

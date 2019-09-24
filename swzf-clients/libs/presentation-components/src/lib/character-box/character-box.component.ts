@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, HostBinding, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, HostBinding, Input} from '@angular/core';
 import {DomSanitizer, SafeStyle} from "@angular/platform-browser";
 
 @Component({
@@ -8,6 +8,7 @@ import {DomSanitizer, SafeStyle} from "@angular/platform-browser";
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharacterBoxComponent {
+
     @HostBinding('style.background-image') backgroundImage: SafeStyle;
     @HostBinding('class.zombie') @Input() zombie = false;
     @HostBinding('class.selected') @Input() selected = false;
@@ -22,3 +23,4 @@ export class CharacterBoxComponent {
     constructor(private sanitizer: DomSanitizer) {
     }
 }
+

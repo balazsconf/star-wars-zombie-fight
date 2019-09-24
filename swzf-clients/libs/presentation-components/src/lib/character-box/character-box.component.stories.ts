@@ -2,26 +2,56 @@ import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {CharacterBoxComponent} from "./character-box.component";
 import {CommonModule} from "@angular/common";
 
+const props = {
+    name: 'Mace Windu',
+    imageUrl: 'https://vignette.wikia.nocookie.net/starwars/images/f/fc/Mace_Windu.jpg/revision/latest?cb=20071230055326'
+};
+
+const template = `<swzf-clients-character-box 
+    [name]="name"
+    [imageUrl]="imageUrl"
+    [selected]="selected"
+    [zombie]="zombie"></swzf-clients-character-box>`;
+
 storiesOf('CharacterBox', module)
-  .addDecorator(
-    moduleMetadata({
-      declarations: [],
-      imports: [CommonModule]
-    })
-  )
-  .add('Regular view', () => ({
-      component: CharacterBoxComponent,
-      props: {
-          name: 'a',
-          imageUrl: 'https://vignette.wikia.nocookie.net/starwars/images/f/fc/Mace_Windu.jpg/revision/latest?cb=20071230055326'
-      }
-    })
-  )
-  // .add('From template', () => ({
-  //     template: 'a<swzf-clients-character-box></swzf-clients-character-box>A'
-  //   })
-  // )
+    .addDecorator(
+        moduleMetadata({
+            declarations: [CharacterBoxComponent],
+            imports: [CommonModule]
+        })
+    )
+    .add('Renegade view', () => ({
+            component: CharacterBoxComponent,
+            props: props
+        })
+    )
+    .add('Selected renegade view', () => ({
+            template,
+            props: {
+                ...props,
+                selected: true
+            }
+        })
+    )
+    .add('Zombie view', () => ({
+        template,
+            props: {
+                ...props,
+                zombie: true
+            }
+        })
+    )
+    .add('Selected zombie view', () => ({
+        template,
+            props: {
+                ...props,
+                zombie: true,
+                selected: true
+            }
+        })
+    )
 ;
+
 
 
 

@@ -30,7 +30,9 @@ export class BattlefieldComponent implements OnInit {
     ) {
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.teamRandomizer.createRandomTeams(3);
+    }
 
     onSelectRight(character: People) {
         this.selectedRight = character;
