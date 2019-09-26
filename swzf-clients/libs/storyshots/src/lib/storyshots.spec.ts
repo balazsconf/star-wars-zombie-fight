@@ -18,7 +18,7 @@ const beforeScreenshot = (page, { context: { kind, story }, url }) => {
     return new Promise(resolve =>
         setTimeout(() => {
             resolve();
-        }, 600)
+        }, 1000)
     );
 };
 

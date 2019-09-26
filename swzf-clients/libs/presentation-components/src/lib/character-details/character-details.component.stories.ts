@@ -10,7 +10,7 @@ const template = `
 `;
 
 
-storiesOf('Presentation components/Character details', module)
+storiesOf('Presentation|Character details', module)
     .addDecorator(
         moduleMetadata({
             declarations: [CharacterDetailsComponent],

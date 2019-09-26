@@ -9,7 +9,7 @@
     "../libs/**/*.spec.ts"
   ],
   "include": [
-    "../libs/**/*"
+    "../libs/**/*.ts"
   ],
   "files": [
     "./typings.d.ts"

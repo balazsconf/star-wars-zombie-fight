@@ -5,7 +5,7 @@ import {CharacterDetailsComponent} from "../character-details/character-details.
 import {DetailsSeparatorComponent} from "../details-separator/details-separator.component";
 import {characterDarthMaul, characterSebulba} from "../storybook.data";
 
-storiesOf('Presentation components/CompareDetails', module)
+storiesOf('Presentation|CompareDetails', module)
     .addDecorator(
         moduleMetadata({
             declarations: [CharacterDetailsComponent, DetailsSeparatorComponent],

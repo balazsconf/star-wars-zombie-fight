@@ -12,19 +12,23 @@ import {CompareDetailsComponent} from "../../../../presentation-components/src/l
 import {DisplayWinnerComponent} from "../../../../presentation-components/src/lib/display-winner/display-winner.component";
 import {RouterTestingModule} from "@angular/router/testing";
 import {Observable, of} from "rxjs";
-import {NOT_SET_PEOPLE, People} from "@swzf-clients/model";
-import {characterDarthMaul, characterSebulba} from "../../../../presentation-components/src/lib/storybook.data";
-import {SwzfUiComponent} from "../swzf-ui/swzf-ui.component";
+import {NOT_SET_PEOPLE} from "@swzf-clients/model";
+import {
+    characterBobaFett,
+    characterDarthMaul,
+    characterMaceWindu,
+    characterSebulba
+} from "@swzf-clients/presentation-components";
 
 
 class MockTeamRandomizerService {
 
     getTeamZombie(): Observable<any[]> {
-        return of([characterDarthMaul]);
+        return of([characterDarthMaul, characterBobaFett]);
     }
 
     getTeamRenegades(): Observable<any[]> {
-        return of([characterSebulba]);
+        return of([characterSebulba, characterMaceWindu]);
     }
 
     getSelectedZombie(): Observable<any> {
@@ -50,7 +54,7 @@ class MockWinnerCalculatorService {
 
 }
 
-storiesOf('Container components|Battlefield', module)
+storiesOf('Container|Battlefield', module)
     .addDecorator(
         moduleMetadata({
             declarations: [BattlefieldComponent,

@@ -2,42 +2,29 @@ import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {TeamViewComponent} from "./team-view.component";
 import {CommonModule} from "@angular/common";
 import {CharacterBoxComponent} from "../character-box/character-box.component";
-
-
-const charMaceWindo = {
-    name: "Mace Windu",
-    image: {
-        url: 'https://vignette.wikia.nocookie.net/starwars/images/f/fc/Mace_Windu.jpg/revision/latest?cb=20071230055326'
-    }
-};
-
-const charAnakinSkywalker = {
-    name: "Anakin Skywalker",
-    image: {
-        url: 'https://vignette.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png/revision/latest?cb=20130621175844'
-    }
-};
-
-const charCaptainAmerica = {
-    name: "Captain America",
-    image: {
-        url: 'https://timedotcom.files.wordpress.com/2015/04/avengers-poster-06.jpg'
-    }
-};
+import {characterBobaFett, characterMaceWindu, characterSebulba} from "@swzf-clients/presentation-components";
 
 const teamWith2Members = {
-    characters: [charMaceWindo, charAnakinSkywalker],
-    selected: {},
+    characters: [characterMaceWindu, characterSebulba],
+    selected: characterSebulba,
+    zombies: true,
     computer: true
 };
 
 const teamWith3Members = {
-    characters: [charMaceWindo, charAnakinSkywalker, charCaptainAmerica],
-    selected: {},
+    characters: [characterMaceWindu, characterSebulba, characterBobaFett],
+    selected: characterBobaFett,
+    zombies: false,
     computer: true
 };
 
-storiesOf('Presentation components/TeamView', module)
+const template = `<swzf-clients-team-view
+                [characters]="characters"
+                [selected]="selected"
+                [zombies]="zombies"
+                computer="computer"></swzf-clients-team-view>`;
+
+storiesOf('Presentation|TeamView', module)
     .addDecorator(
         moduleMetadata({
             declarations: [TeamViewComponent, CharacterBoxComponent],
@@ -45,18 +32,12 @@ storiesOf('Presentation components/TeamView', module)
         })
     )
     .add('2 members', () => ({
-            template: `<swzf-clients-team-view
-                [characters]="characters"
-                [selected]="selected"
-                computer="computer"></swzf-clients-team-view>`,
+            template,
             props: teamWith2Members
         })
     )
     .add('3 members', () => ({
-            template: `<swzf-clients-team-view
-                [characters]="characters"
-                [selected]="selected"
-                computer="computer"></swzf-clients-team-view>`,
+            template,
             props: teamWith3Members
         })
     )

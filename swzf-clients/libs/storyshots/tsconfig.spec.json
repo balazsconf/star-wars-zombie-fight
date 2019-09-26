@@ -1,10 +1,22 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
+      "types": ["node", "jest"],
     "module": "commonjs",
-    "types": ["jest", "node"]
+      "target": "es2015",
+      "typeRoots": ["node_modules/@types"],
+      "paths": {
+          "@swzf-clients/presentation-components": [
+              "../presentation-components/src/index.ts"
+          ],
+          "@swzf-clients/swzf-ui": ["../swzf-ui/src/index.ts"],
+          "@swzf-clients/model": ["../model/src/index.ts"],
+          "@swzf-clients/storyshots": ["../storyshots/src/index.ts"]
+      },
+      "baseUrl": ".",
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "declaration": false
   },
-  "files": ["src/test-setup.ts"],
   "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {People} from "@swzf-clients/model";
+import {isZombie, People} from "@swzf-clients/model";
 
 @Component({
     selector: 'swzf-clients-display-winner',
@@ -15,6 +15,8 @@ export class DisplayWinnerComponent implements OnInit {
     @Input() renegade: People;
 
     @Output() acknowledgedClicked = new EventEmitter<{winner: People, zombie: People, renegade: People}>();
+
+    public isZombie = isZombie;
 
     constructor() {}
 
