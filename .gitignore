@@ -9,7 +9,8 @@ swzf-clients/out-tsc
 **/node_modules
 
 # IDEs and editors
-**/.idea
+/.idea
+swzf-clients/.idea
 .project
 .classpath
 .c9/
