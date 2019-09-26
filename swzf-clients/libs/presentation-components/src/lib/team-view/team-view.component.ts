@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {People} from "@swzf-clients/model";
+import {isAlive, People} from "@swzf-clients/model";
 
 @Component({
     selector: 'swzf-clients-team-view',
@@ -32,13 +32,7 @@ export class TeamViewComponent implements OnInit, OnChanges {
     }
 
     getLiveCharacters(characters): People[] {
-        const liveCharacters: People[] = [];
-        for ( const character of this.characters) {
-            if ( character.dead !== true ) {
-                liveCharacters.push(character);
-            }
-        }
-        return liveCharacters;
+        return characters.filter(isAlive);
     }
 
     selectRandomCharacter() {
@@ -53,6 +47,10 @@ export class TeamViewComponent implements OnInit, OnChanges {
 
     onSelectCharacter(character: People) {
         this.selectCharacter.emit(character);
+    }
+
+    isSelected(one, two){
+        return one.id === two.id;
     }
 
 }

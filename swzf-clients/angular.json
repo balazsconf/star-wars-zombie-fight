@@ -158,68 +158,6 @@
         }
       }
     },
-    "intro-screen": {
-      "projectType": "library",
-      "root": "libs/intro-screen",
-      "sourceRoot": "libs/intro-screen/src",
-      "prefix": "swzf-clients",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/intro-screen/tsconfig.lib.json",
-              "libs/intro-screen/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/intro-screen/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/intro-screen/jest.config.js",
-            "tsConfig": "libs/intro-screen/tsconfig.spec.json",
-            "setupFile": "libs/intro-screen/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
-    "fight-screen": {
-      "projectType": "library",
-      "root": "libs/fight-screen",
-      "sourceRoot": "libs/fight-screen/src",
-      "prefix": "swzf-clients",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/fight-screen/tsconfig.lib.json",
-              "libs/fight-screen/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/fight-screen/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/fight-screen/jest.config.js",
-            "tsConfig": "libs/fight-screen/tsconfig.spec.json",
-            "setupFile": "libs/fight-screen/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
     "swzf-ui": {
       "projectType": "library",
       "root": "libs/swzf-ui",
@@ -304,37 +242,6 @@
             "jestConfig": "libs/storyshots/jest.config.js",
             "tsConfig": "libs/storyshots/tsconfig.spec.json",
             "setupFile": "libs/storyshots/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
-    "gameover-screen": {
-      "projectType": "library",
-      "root": "libs/gameover-screen",
-      "sourceRoot": "libs/gameover-screen/src",
-      "prefix": "swzf-clients",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/gameover-screen/tsconfig.lib.json",
-              "libs/gameover-screen/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/gameover-screen/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/gameover-screen/jest.config.js",
-            "tsConfig": "libs/gameover-screen/tsconfig.spec.json",
-            "setupFile": "libs/gameover-screen/src/test-setup.ts"
           }
         }
       },

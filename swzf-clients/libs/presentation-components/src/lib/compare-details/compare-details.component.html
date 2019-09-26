@@ -1,10 +1,10 @@
 <div class="compare">
-    <swzf-clients-character-details zombie="true" [character]="left"></swzf-clients-character-details>
+    <swzf-clients-character-details zombie="true" [character]="zombie"></swzf-clients-character-details>
 
     <swzf-clients-details-separator></swzf-clients-details-separator>
 
-    <swzf-clients-character-details [character]="right"></swzf-clients-character-details>
+    <swzf-clients-character-details [character]="renegade"></swzf-clients-character-details>
 </div>
 
-<button class="fight-button" (click)="onFightClicked(left, right)">Lets Fight</button>
+<button class="fight-button" (click)="onFightClicked(zombie, renegade)">Let's Fight</button>
 

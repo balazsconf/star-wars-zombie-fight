@@ -4,37 +4,20 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {SwzfUiModule} from "@swzf-clients/swzf-ui";
 import {RouterModule} from "@angular/router";
-import {APOLLO_OPTIONS, ApolloModule} from "apollo-angular";
+import {Apollo, APOLLO_OPTIONS, ApolloModule} from "apollo-angular";
 import {InMemoryCache} from "apollo-cache-inmemory";
 import {HttpLink, HttpLinkModule} from "apollo-angular-link-http";
 import {HttpClientModule} from "@angular/common/http";
 import gql from "graphql-tag";
-
-export const GET_ZOMBIES = gql`
-  query Zombies {
-    zombies @client
-  }
-`;
-
-export const GET_RENEGADES = gql`
-  query Renegades {
-    renegades @client
-  }
-`;
+import {NOT_SET_PEOPLE} from "@swzf-clients/model";
 
 const resolvers = {
     People: {
-        dead: (people) => people.dead || false,
-        side: (people, _, { cache }) => {
-            const { zombies } = cache.readQuery({ query: GET_ZOMBIES });
-            const { renegades } = cache.readQuery({ query: GET_RENEGADES });
-            if ( zombies.includes(people.id) ) {
-                return 'zombies';
-            }
-            if ( renegades.includes(people.id) ) {
-                return 'renegades';
-            }
-            return '';
+        dead: (people) => {
+            return people.dead || false
+        },
+        side: (people) => {
+            return people.side || ''
         }
     },
     Mutation: {
@@ -50,25 +33,42 @@ const resolvers = {
             cache.writeData({id, data});
             return null;
         },
-        addOrRemoveFromZombies: (_, { id }, { cache }) => {
-            const { zombies } = cache.readQuery({ query: GET_ZOMBIES });
-            const data = {
-                zombies: zombies.includes(id)
-                    ? zombies.filter(i => i !== id)
-                    : [...zombies, id],
-            };
-            cache.writeQuery({ query: GET_ZOMBIES, data });
-            return data.zombies;
+        setSide: (_root, variables, {cache, getCacheKey}) => {
+            const id = getCacheKey({__typename: 'People', id: variables.id});
+            const fragment = gql`
+                fragment sideIndicator on People {
+                    side
+                }
+            `;
+            const people = cache.readFragment({fragment, id});
+            const data = {...people, side: variables.side};
+            cache.writeData({id, data});
+            return null;
         },
-        addOrRemoveFromRenegades: (_, { id }, { cache }) => {
-            const { renegades } = cache.readQuery({ query: GET_RENEGADES });
-            const data = {
-                renegades: renegades.includes(id)
-                    ? renegades.filter(i => i !== id)
-                    : [...renegades, id],
-            };
-            cache.writeQuery({ query: GET_RENEGADES, data });
-            return data.renegades;
+        setSelectedZombie: (_root, variables, {cache}) => {
+            cache.writeData({ data: {selectedZombie: {...variables.people} } });
+            return null;
+        },
+        clearSelectedZombie: (_root, variables, {cache}) => {
+            cache.writeData({ data: {selectedZombie: {...NOT_SET_PEOPLE} } });
+            return null;
+        },
+        setSelectedRenegade: (_root, variables, {cache}) => {
+            cache.writeData({ data: {selectedRenegade: {...variables.people} } });
+            return null;
+        },
+        clearSelectedRenegade: (_root, variables, {cache}) => {
+            cache.writeData({ data: {selectedRenegade: {...NOT_SET_PEOPLE} } });
+            return null;
+        },
+        setWinner: (_root, variables, {cache}) => {
+            cache.writeData({ data: {winner: {...variables.people} } });
+            return null;
+        },
+        clearWinner: (_root, variables, {cache}) => {
+            console.log('clear winner');
+            cache.writeData({ data: {winner: {...NOT_SET_PEOPLE} } });
+            return null;
         }
     }
 };
@@ -80,15 +80,10 @@ const typeDefs = gql`
   }
   
   extend type Query {
-    zombies: [ID]!
-    renegades: [ID]!
+    selectedZombie: People
+    selectedRenegade: People
+    winner: People
   }
-
-  extend type Mutation {
-    addOrRemoveFromZombies(id: ID!): [People]
-    addOrRemoveFromRenegades(id: ID!): [People]
-  }
-  
 `;
 
 @NgModule({
@@ -116,6 +111,15 @@ const typeDefs = gql`
     bootstrap: [AppComponent]
 })
 export class AppModule {
-    constructor() { }
+    constructor(private apollo: Apollo) {
+        this.apollo.getClient().cache.writeData({
+            data: {
+                selectedZombie: {...NOT_SET_PEOPLE},
+                selectedRenegade: {...NOT_SET_PEOPLE},
+                winner: {...NOT_SET_PEOPLE},
+                gameOver: false
+            },
+        });
+    }
 }
 

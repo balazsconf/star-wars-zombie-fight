@@ -2,7 +2,8 @@
     <swzf-clients-character-box
         [name]="character.name"
         [imageUrl]="character.image.url"
-        [selected]="selected === character"
+        [selected]="isSelected(selected, character)"
+        [dead]="character.dead"
         [zombie]="zombies"
         (click)="onSelectCharacter(character)"></swzf-clients-character-box>
 </ng-container>

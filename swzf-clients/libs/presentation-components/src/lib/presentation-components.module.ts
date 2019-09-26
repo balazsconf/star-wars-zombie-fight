@@ -7,11 +7,12 @@ import { CompareDetailsComponent } from './compare-details/compare-details.compo
 import { DetailsSeparatorComponent } from './details-separator/details-separator.component';
 import { DisplayWinnerComponent } from './display-winner/display-winner.component';
 import { GameOverComponent } from './game-over/game-over.component';
+import { DuelComponent } from './duel/duel.component';
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [CharacterBoxComponent, TeamViewComponent, CharacterDetailsComponent, CompareDetailsComponent, DetailsSeparatorComponent, DisplayWinnerComponent, GameOverComponent],
-    exports: [CharacterBoxComponent, TeamViewComponent, CharacterDetailsComponent, CompareDetailsComponent, DisplayWinnerComponent]
+    declarations: [CharacterBoxComponent, TeamViewComponent, CharacterDetailsComponent, CompareDetailsComponent, DetailsSeparatorComponent, DisplayWinnerComponent, GameOverComponent, DuelComponent],
+    exports: [CharacterBoxComponent, TeamViewComponent, CharacterDetailsComponent, CompareDetailsComponent, DisplayWinnerComponent, DuelComponent, GameOverComponent]
 })
 export class PresentationComponentsModule {
 }

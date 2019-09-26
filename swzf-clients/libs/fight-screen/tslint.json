@@ -1,7 +1,0 @@
-{
-  "extends": "../../tslint.json",
-  "rules": {
-    "directive-selector": [true, "attribute", "swzfClients", "camelCase"],
-    "component-selector": [true, "element", "swzf-clients", "kebab-case"]
-  }
-}

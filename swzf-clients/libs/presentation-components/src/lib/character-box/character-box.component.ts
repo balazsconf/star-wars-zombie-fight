@@ -11,6 +11,7 @@ export class CharacterBoxComponent {
 
     @HostBinding('style.background-image') backgroundImage: SafeStyle;
     @HostBinding('class.zombie') @Input() zombie = false;
+    @HostBinding('class.dead') @Input() dead = false;
     @HostBinding('class.selected') @Input() selected = false;
 
     @Input() name: string;

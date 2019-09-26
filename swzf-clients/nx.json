@@ -17,12 +17,6 @@
     "presentation-components": {
       "tags": []
     },
-    "intro-screen": {
-      "tags": []
-    },
-    "fight-screen": {
-      "tags": []
-    },
     "swzf-ui": {
       "tags": []
     },
@@ -30,9 +24,6 @@
       "tags": []
     },
     "storyshots": {
-      "tags": []
-    },
-    "gameover-screen": {
       "tags": []
     }
   }

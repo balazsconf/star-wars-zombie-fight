@@ -33,6 +33,13 @@
         }
     }
 
+    &.dead {
+        .blend {
+            background-image: linear-gradient(to bottom,  gray 0%, black 100%);
+            mix-blend-mode: color;
+        }
+    }
+
     .border {
         position: absolute;
         width: calc(100% + 4px);

@@ -1,4 +1,4 @@
 <swzf-clients-character-box [imageUrl]="winner?.image?.url" [selected]="true" [zombie]="winner?.side === 'zombie'"></swzf-clients-character-box>
 <label>and the winner is:</label>
 <span>{{winner?.name}}</span>
-<button (click)="onAcknowledgedClicked()">Acknowledged</button>
+<button (click)="onAcknowledgedClicked(winner, zombie, renegade)">Acknowledged</button>

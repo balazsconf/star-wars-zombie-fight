@@ -1,1 +1,21 @@
-<p>game-over works!</p>
+<div class="image swzf"></div>
+
+<div class="divider"></div>
+
+<div class="winners">
+    <div class="list">
+        <swzf-clients-character-box *ngFor="let character of team"
+                                    [name]="character.name"
+                                    [imageUrl]="character.image.url"
+                                    [zombie]="isZombie(character)"></swzf-clients-character-box>
+    </div>
+
+    <div class="go-text">GAME OVER</div>
+
+    <div class="image zombies" *ngIf="isZombieTeam()"></div>
+    <div class="image renegades" *ngIf="!isZombieTeam()"></div>
+
+    <div class="wtg-text">won the fight</div>
+</div>
+
+<button class="try-again" (click)="onTryAgainClick()">try again</button>

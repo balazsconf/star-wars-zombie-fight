@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {People} from "@swzf-clients/model";
+import {isPeopleSet, People} from "@swzf-clients/model";
 
 @Component({
   selector: 'swzf-clients-compare-details',
@@ -8,18 +8,19 @@ import {People} from "@swzf-clients/model";
 })
 export class CompareDetailsComponent implements OnInit {
 
-    @Input() left: People;
-    @Input() right: People;
+    @Input() zombie: People;
+    @Input() renegade: People;
 
-    @Output() fightClicked = new EventEmitter<{left: People, right: People}>();
+    @Output() fightClicked = new EventEmitter<{zombie: People, renegade: People}>();
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  onFightClicked(left: People, right: People) {
-      this.fightClicked.emit({left, right});
+  onFightClicked(zombie: People, renegade: People) {
+      if( isPeopleSet(zombie) && isPeopleSet(renegade) ) {
+        this.fightClicked.emit({zombie, renegade});
+      }
   }
 
 }

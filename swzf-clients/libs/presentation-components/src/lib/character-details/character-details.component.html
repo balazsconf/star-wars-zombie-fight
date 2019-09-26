@@ -1,4 +1,4 @@
-<ng-container *ngIf="character else nofighter">
+<ng-container *ngIf="isPeopleSet(character) else nofighter">
     <div class="name">
         {{character?.name}}
     </div>

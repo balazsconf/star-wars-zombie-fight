@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {isZombie, People} from "@swzf-clients/model";
 
 @Component({
   selector: 'swzf-clients-game-over',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameOverComponent implements OnInit {
 
-  constructor() { }
+    @Input() team: People[];
 
-  ngOnInit() {
-  }
+    @Output() tryAgain = new EventEmitter();
+
+    public isZombie = isZombie;
+
+    constructor() { }
+
+    ngOnInit() { }
+
+    isZombieTeam() {
+        return isZombie(this.team[0]);
+    }
+
+    onTryAgainClick(){
+        this.tryAgain.emit();
+    }
 
 }

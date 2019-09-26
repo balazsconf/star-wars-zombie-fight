@@ -1,0 +1,31 @@
+<div class="zombies">
+    <div class="image"></div>
+
+    <swzf-clients-team-view
+        [characters]="teamZombie$ | async"
+        [selected]="selectedZombie$ | async"
+        zombies="true"
+        (selectCharacter)="onSelectZombie($event)"></swzf-clients-team-view>
+</div>
+
+<div class="selected-fighters">
+    <div class="image"></div>
+
+    <swzf-clients-duel
+        [winner]="winner$ | async"
+        [zombie]="selectedZombie$ | async"
+        [renegade]="selectedRenegade$ | async"
+        (fightClicked)="fightClicked($event)"
+        (winnerAcknowledged)="winnerAcknowledged($event)">
+    </swzf-clients-duel>
+    <button class="restart" (click)="onRestartGameClick()">restart game</button>
+</div>
+
+<div class="renegades">
+    <div class="image">saviors of the galaxy</div>
+
+    <swzf-clients-team-view
+        [characters]="teamRenegades$ | async"
+        [selected]="selectedRenegade$ | async"
+        (selectCharacter)="onSelectRenegade($event)"></swzf-clients-team-view>
+</div>

@@ -1,0 +1,72 @@
+@import "../../../../../apps/graphql-client/src/assets/variables.scss";
+
+:host {
+    display: block;
+    padding-top: $space*3;
+    text-align: center;
+
+    .image {
+        display: inline-block;
+        background-size: contain;
+        background-repeat: no-repeat;
+
+        &.swzf {
+            width: 293px;
+            height: 157px;
+            background-image: url("../../../../../apps/graphql-client/src/assets/swzf.png");
+        }
+
+        &.zombies {
+            width: 320px;
+            height: 136px;
+            background-image: url("../../../../../apps/graphql-client/src/assets/zombies.png");
+            margin-bottom: -30px;
+        }
+
+        &.renegades {
+            width: 320px;
+            padding-top: 40px;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            background-image: url("../../../../../apps/graphql-client/src/assets/renegades.png");
+            color: $primary-color;
+        }
+    }
+
+    .divider {
+        height: $space/2;
+        width: 70%;
+        margin: 0 auto;
+        margin-top: -10px;
+        background: linear-gradient(to right, rgba(240,190,0,0) 0%,rgba(240,190,0,1) 50%, rgba(240,190,0,0) 100%);
+    }
+
+    .winners{
+        .list{
+            swzf-clients-character-box {
+                width: 150px;
+                height: 150px;
+                margin: $space*3;
+            }
+        }
+
+        .go-text {
+            margin: $space*3 auto;
+            font-size: 32px;
+            font-weight: 700;
+            color: $primary-color;
+        }
+
+        .wtg-text {
+            margin: $space*3 auto;
+            font-size: 16px;
+            color: $primary-color;
+        }
+    }
+
+    .try-again{
+        margin-top: $space*6;
+    }
+}

@@ -1,0 +1,9 @@
+<swzf-clients-compare-details *ngIf="!isWinner(winner)"
+                              [zombie]="zombie"
+                              [renegade]="renegade"
+                              (fightClicked)="onFightClicked($event)"></swzf-clients-compare-details>
+<swzf-clients-display-winner *ngIf="isWinner(winner)"
+                             [winner]="winner"
+                             [zombie]="zombie"
+                             [renegade]="renegade"
+                             (acknowledgedClicked)="onWinnerAcknowledged($event)"></swzf-clients-display-winner>

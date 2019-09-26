@@ -1,5 +1,5 @@
 import {Component, HostBinding, Input} from '@angular/core';
-import {People} from "@swzf-clients/model";
+import {isPeopleSet, People} from "@swzf-clients/model";
 
 @Component({
     selector: 'swzf-clients-character-details',
@@ -11,6 +11,7 @@ export class CharacterDetailsComponent {
     @HostBinding('class.zombie') @Input() zombie = false;
     @Input() character: People;
 
-    constructor() {
-    }
+    public isPeopleSet = isPeopleSet;
+
+    constructor() {}
 }

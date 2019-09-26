@@ -10,14 +10,18 @@ export class DisplayWinnerComponent implements OnInit {
 
     @Input() winner: People;
 
-    @Output() acknowledgedClicked = new EventEmitter();
+    @Input() zombie: People;
+
+    @Input() renegade: People;
+
+    @Output() acknowledgedClicked = new EventEmitter<{winner: People, zombie: People, renegade: People}>();
 
     constructor() {}
 
     ngOnInit() {}
 
-    onAcknowledgedClicked() {
-        this.acknowledgedClicked.emit();
+    onAcknowledgedClicked(winner: People, zombie: People, renegade: People) {
+        this.acknowledgedClicked.emit({winner, zombie, renegade});
     }
 
 }
