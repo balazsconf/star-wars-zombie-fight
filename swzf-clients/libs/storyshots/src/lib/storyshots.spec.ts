@@ -22,17 +22,21 @@ const beforeScreenshot = (page, { context: { kind, story }, url }) => {
     );
 };
 
+const getConfiguration = ({ configure }) =>
+configure(() => {
+    // find stories
+    const req = context(__dirname, '../../../../libs', true, /\.stories\.ts$/);
+    console.log(`Running ${req.keys().length} story files\n`);
+
+    req.keys().forEach(filename => {
+        req(filename);
+    });
+}, module);
+
+
+
 initStoryshots({
     framework: 'angular',
-    config: ({ configure }) =>
-        configure(() => {
-            // find stories
-            const req = context(__dirname, '../../../../libs', true, /\.stories\.ts$/);
-            console.log(`Running ${req.keys().length} story files\n`);
-
-            req.keys().forEach(filename => {
-                req(filename);
-            });
-        }, module),
+    config: getConfiguration,
     test: imageSnapshot({storybookUrl, getMatchOptions, beforeScreenshot})
 });
